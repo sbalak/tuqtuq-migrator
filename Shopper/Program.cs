@@ -13,7 +13,7 @@ builder.Services.AddIdentityCore<User>()
     .AddEntityFrameworkStores<ShopperContext>()
     .AddApiEndpoints();
 
-builder.Services.AddDbContext<ShopperContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ShoppingCartContext")));
+builder.Services.AddDbContext<ShopperContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ShopperContext")));
 
 var app = builder.Build();
 
