@@ -66,8 +66,7 @@ namespace Shopper.Migrations
 
                     b.HasIndex("CartId");
 
-                    b.HasIndex("FoodItemId")
-                        .IsUnique();
+                    b.HasIndex("FoodItemId");
 
                     b.ToTable("CartItems");
                 });
@@ -157,8 +156,7 @@ namespace Shopper.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FoodItemId")
-                        .IsUnique();
+                    b.HasIndex("FoodItemId");
 
                     b.HasIndex("OrderId");
 
@@ -465,8 +463,8 @@ namespace Shopper.Migrations
                         .IsRequired();
 
                     b.HasOne("Shopper.Models.FoodItem", "FoodItem")
-                        .WithOne()
-                        .HasForeignKey("Shopper.Models.CartItem", "FoodItemId")
+                        .WithMany()
+                        .HasForeignKey("FoodItemId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
@@ -508,8 +506,8 @@ namespace Shopper.Migrations
             modelBuilder.Entity("Shopper.Models.OrderItem", b =>
                 {
                     b.HasOne("Shopper.Models.FoodItem", "FoodItem")
-                        .WithOne()
-                        .HasForeignKey("Shopper.Models.OrderItem", "FoodItemId")
+                        .WithMany()
+                        .HasForeignKey("FoodItemId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 

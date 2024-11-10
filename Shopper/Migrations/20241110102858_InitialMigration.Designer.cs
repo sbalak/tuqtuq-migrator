@@ -12,7 +12,7 @@ using Shopper.Models;
 namespace Shopper.Migrations
 {
     [DbContext(typeof(ShopperContext))]
-    [Migration("20241102125901_InitialMigration")]
+    [Migration("20241110102858_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -69,8 +69,7 @@ namespace Shopper.Migrations
 
                     b.HasIndex("CartId");
 
-                    b.HasIndex("FoodItemId")
-                        .IsUnique();
+                    b.HasIndex("FoodItemId");
 
                     b.ToTable("CartItems");
                 });
@@ -88,7 +87,6 @@ namespace Shopper.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Photo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
@@ -161,8 +159,7 @@ namespace Shopper.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FoodItemId")
-                        .IsUnique();
+                    b.HasIndex("FoodItemId");
 
                     b.HasIndex("OrderId");
 
@@ -469,8 +466,8 @@ namespace Shopper.Migrations
                         .IsRequired();
 
                     b.HasOne("Shopper.Models.FoodItem", "FoodItem")
-                        .WithOne()
-                        .HasForeignKey("Shopper.Models.CartItem", "FoodItemId")
+                        .WithMany()
+                        .HasForeignKey("FoodItemId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
@@ -512,8 +509,8 @@ namespace Shopper.Migrations
             modelBuilder.Entity("Shopper.Models.OrderItem", b =>
                 {
                     b.HasOne("Shopper.Models.FoodItem", "FoodItem")
-                        .WithOne()
-                        .HasForeignKey("Shopper.Models.OrderItem", "FoodItemId")
+                        .WithMany()
+                        .HasForeignKey("FoodItemId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 

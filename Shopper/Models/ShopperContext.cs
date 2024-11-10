@@ -37,12 +37,12 @@ namespace Shopper.Models
 
             builder.Entity<CartItem>()
             .HasOne(r => r.FoodItem)
-            .WithOne()
+            .WithMany()
             .OnDelete(DeleteBehavior.NoAction);
 
             builder.Entity<OrderItem>()
             .HasOne(r => r.FoodItem)
-            .WithOne()
+            .WithMany()
             .OnDelete(DeleteBehavior.NoAction);
         }
     }
