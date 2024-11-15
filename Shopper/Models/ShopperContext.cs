@@ -51,6 +51,19 @@ namespace Shopper.Models
             .HasOne(r => r.Restaurant)
             .WithMany()
             .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<Order>()
+            .Property(r => r.Amount)
+            .HasPrecision(18, 2);
+
+            builder.Entity<OrderItem>()
+            .Property(r => r.Price)
+            .HasPrecision(18, 2);
+
+            builder.Entity<FoodItem>()
+            .Property(r => r.Price)
+            .HasPrecision(18, 2);
+
         }
     }
 }

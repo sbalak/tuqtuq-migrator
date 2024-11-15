@@ -5,7 +5,7 @@
         public int Id { get; set; }
         public int UserId { get; set; }
         public int RestaurantId { get; set; }
-        public decimal TotalPrice { get; set; }
+        public decimal Amount { get; set; }
         public DateTime DateOrdered { get; set; }
         public DateTime? DateAccepted { get; set; }
         public DateTime? DateCompleted { get; set; }
