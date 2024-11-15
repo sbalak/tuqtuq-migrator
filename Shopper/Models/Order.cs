@@ -9,6 +9,7 @@
         public DateTime DateOrdered { get; set; }
         public DateTime? DateAccepted { get; set; }
         public DateTime? DateCompleted { get; set; }
+        public DateTime? DateCancelled { get; set; }
         public User User { get; set; }
         public Restaurant Restaurant { get; set; }
     }
@@ -21,5 +22,14 @@
         public decimal Price { get; set; }
         public Order Order { get; set; }
         public FoodItem? FoodItem { get; set; } 
+    }
+    public class Rating
+    {
+        public int Id { get; set; }
+        public int OrderId { get; set; }
+        public int Score { get; set; }
+        public string Comment { get; set; }
+        public DateTime DateCreated { get; set; }
+        public Order Order { get; set; }
     }
 }

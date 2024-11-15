@@ -30,6 +30,9 @@ namespace Shopper.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("RestaurantId")
                         .HasColumnType("int");
 
@@ -71,6 +74,31 @@ namespace Shopper.Migrations
                     b.ToTable("CartItems");
                 });
 
+            modelBuilder.Entity("Shopper.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RestaurantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RestaurantId");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("Shopper.Models.FoodItem", b =>
                 {
                     b.Property<int>("Id")
@@ -78,6 +106,18 @@ namespace Shopper.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -94,6 +134,8 @@ namespace Shopper.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.HasIndex("RestaurantId");
 
                     b.ToTable("FoodItems");
@@ -108,6 +150,9 @@ namespace Shopper.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime?>("DateAccepted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateCancelled")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DateCompleted")
@@ -163,6 +208,34 @@ namespace Shopper.Migrations
                     b.ToTable("OrderItems");
                 });
 
+            modelBuilder.Entity("Shopper.Models.Rating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Score")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("Ratings");
+                });
+
             modelBuilder.Entity("Shopper.Models.Restaurant", b =>
                 {
                     b.Property<int>("Id")
@@ -186,6 +259,21 @@ namespace Shopper.Migrations
                     b.Property<string>("Cuisine")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateDisabled")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("bit");
 
                     b.Property<double>("Latitude")
                         .HasColumnType("float");
@@ -473,13 +561,32 @@ namespace Shopper.Migrations
                     b.Navigation("FoodItem");
                 });
 
-            modelBuilder.Entity("Shopper.Models.FoodItem", b =>
+            modelBuilder.Entity("Shopper.Models.Category", b =>
                 {
                     b.HasOne("Shopper.Models.Restaurant", "Restaurant")
                         .WithMany()
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Restaurant");
+                });
+
+            modelBuilder.Entity("Shopper.Models.FoodItem", b =>
+                {
+                    b.HasOne("Shopper.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Shopper.Models.Restaurant", "Restaurant")
+                        .WithMany()
+                        .HasForeignKey("RestaurantId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Category");
 
                     b.Navigation("Restaurant");
                 });
@@ -518,6 +625,17 @@ namespace Shopper.Migrations
                         .IsRequired();
 
                     b.Navigation("FoodItem");
+
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("Shopper.Models.Rating", b =>
+                {
+                    b.HasOne("Shopper.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Order");
                 });
