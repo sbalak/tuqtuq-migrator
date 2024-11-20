@@ -56,12 +56,28 @@ namespace Shopper.Models
             .Property(r => r.Amount)
             .HasPrecision(18, 2);
 
+            builder.Entity<Order>()
+            .Property(r => r.PrimaryTaxAmount)
+            .HasPrecision(18, 2);
+
+            builder.Entity<Order>()
+            .Property(r => r.SecondaryTaxAmount)
+            .HasPrecision(18, 2);
+
             builder.Entity<OrderItem>()
-            .Property(r => r.Price)
+            .Property(r => r.Amount)
             .HasPrecision(18, 2);
 
             builder.Entity<FoodItem>()
             .Property(r => r.Price)
+            .HasPrecision(18, 2);
+
+            builder.Entity<Restaurant>()
+            .Property(r => r.PrimaryTaxRate)
+            .HasPrecision(18, 2);
+
+            builder.Entity<Restaurant>()
+            .Property(r => r.SecondaryTaxRate)
             .HasPrecision(18, 2);
 
         }
