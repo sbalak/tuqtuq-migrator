@@ -69,6 +69,10 @@ namespace Shopper.Models
             .HasPrecision(18, 2);
 
             builder.Entity<FoodItem>()
+            .Property(r => r.TaxablePrice)
+            .HasPrecision(18, 2);
+
+            builder.Entity<FoodItem>()
             .Property(r => r.Price)
             .HasPrecision(18, 2);
 
