@@ -39,7 +39,6 @@
         public string Description { get; set; }
         public string Type { get; set; }
         public string? Photo { get; set; }
-        public decimal TaxablePrice { get; set; }
         public decimal Price { get; set; }
         public bool IsAvailable { get; set; }
         public bool IsDisabled { get; set; }
