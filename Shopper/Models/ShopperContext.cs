@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Emit;
 
 namespace Shopper.Models
 {
@@ -10,8 +8,7 @@ namespace Shopper.Models
         public ShopperContext (DbContextOptions<ShopperContext> options) : base(options) 
         { 
         }
-
-        public DbSet<Category> Categories { get; set; }
+                public DbSet<Category> Categories { get; set; }
         public DbSet<FoodItem> FoodItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
@@ -53,6 +50,10 @@ namespace Shopper.Models
             .OnDelete(DeleteBehavior.NoAction);
 
             builder.Entity<Order>()
+            .Property(r => r.TaxableAmount)
+            .HasPrecision(18, 2);
+
+            builder.Entity<Order>()
             .Property(r => r.Amount)
             .HasPrecision(18, 2);
 
@@ -62,6 +63,10 @@ namespace Shopper.Models
 
             builder.Entity<Order>()
             .Property(r => r.SecondaryTaxAmount)
+            .HasPrecision(18, 2);
+
+            builder.Entity<OrderItem>()
+            .Property(r => r.TaxableAmount)
             .HasPrecision(18, 2);
 
             builder.Entity<OrderItem>()
