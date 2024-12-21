@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Shopper.Models;
+using Takku.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,7 +24,7 @@ builder.Services.AddAuthentication(x =>
                     };
                 });
 
-builder.Services.AddDbContext<ShopperContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ShopperContext")));
+builder.Services.AddDbContext<TakkuContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("TakkuContext")));
 
 var app = builder.Build();
 

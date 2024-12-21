@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace Shopper.Models
+﻿namespace Takku.Models
 {
     public class User
     {

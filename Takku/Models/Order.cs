@@ -1,4 +1,4 @@
-﻿namespace Shopper.Models
+﻿namespace Takku.Models
 {
     public class Order
     {

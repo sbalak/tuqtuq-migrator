@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace Shopper.Models
+namespace Takku.Models
 {
-    public class ShopperContext : DbContext
+    public class TakkuContext : DbContext
     {
-        public ShopperContext (DbContextOptions<ShopperContext> options) : base(options) 
+        public TakkuContext (DbContextOptions<TakkuContext> options) : base(options) 
         { 
         }
         public DbSet<Category> Categories { get; set; }
@@ -17,6 +16,8 @@ namespace Shopper.Models
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Staff> Staffs { get; set; }
+        public DbSet<Contract> Contracts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -26,6 +27,11 @@ namespace Shopper.Models
             builder.Entity<User>().Property(m => m.LastName).HasMaxLength(50);
             builder.Entity<User>().Property(m => m.Latitude).HasMaxLength(200);
             builder.Entity<User>().Property(m => m.Longitude).HasMaxLength(200);
+
+            builder.Entity<Staff>().Property(m => m.FirstName).HasMaxLength(50);
+            builder.Entity<Staff>().Property(m => m.LastName).HasMaxLength(50);
+            builder.Entity<Staff>().Property(m => m.Latitude).HasMaxLength(200);
+            builder.Entity<Staff>().Property(m => m.Longitude).HasMaxLength(200);
 
             builder.Entity<CartItem>()
             .HasOne(r => r.FoodItem)
