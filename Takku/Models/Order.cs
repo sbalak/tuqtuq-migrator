@@ -5,7 +5,6 @@
         public int Id { get; set; }
         public int UserId { get; set; }
         public int RestaurantId { get; set; }
-        public string UniqueId { get; set; }
         public string Status { get; set; }
         public decimal TaxableAmount { get; set; }
         public decimal Amount { get; set; }

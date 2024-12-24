@@ -3,7 +3,6 @@
     public class Restaurant
     {
         public int Id { get; set; }
-        public string UniqueId { get; set; }
         public string Name { get; set; }
         public string Photo { get; set; }
         public string LegalName { get; set; }
