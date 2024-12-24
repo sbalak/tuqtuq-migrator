@@ -5,6 +5,8 @@
         public int Id { get; set; }
         public int UserId { get; set; }
         public int RestaurantId { get; set; }
+        public string UniqueId { get; set; }
+        public string Status { get; set; }
         public decimal TaxableAmount { get; set; }
         public decimal Amount { get; set; }
         public decimal PrimaryTaxAmount { get; set; }
@@ -12,7 +14,7 @@
         public DateTime DateOrdered { get; set; }
         public DateTime? DateAccepted { get; set; }
         public DateTime? DateCompleted { get; set; }
-        public DateTime? DateCancelled { get; set; }
+        public DateTime? DateRejected { get; set; }
         public User User { get; set; }
         public Restaurant Restaurant { get; set; }
     }
