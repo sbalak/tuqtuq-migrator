@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Takku.Models;
+using TuqTuq.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,7 +24,7 @@ builder.Services.AddAuthentication(x =>
                     };
                 });
 
-builder.Services.AddDbContext<TakkuContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("TakkuContext")));
+builder.Services.AddDbContext<TuqTuqContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("TuqTuqContext")));
 
 var app = builder.Build();
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Takku.Migrations
+namespace TuqTuq.Migrations
 {
     /// <inheritdoc />
     public partial class InitialMigration : Migration
@@ -18,6 +18,7 @@ namespace Takku.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PreparationTime = table.Column<int>(type: "int", nullable: false),
                     Photo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LegalName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AddressLine1 = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -167,6 +168,7 @@ namespace Takku.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     RestaurantId = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TaxableAmount = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     PrimaryTaxAmount = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
@@ -174,7 +176,7 @@ namespace Takku.Migrations
                     DateOrdered = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateAccepted = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DateCompleted = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DateCancelled = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    DateRejected = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -1,4 +1,4 @@
-﻿namespace Takku.Models
+﻿namespace TuqTuq.Models
 {
     public class Order
     {

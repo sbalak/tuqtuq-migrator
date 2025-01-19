@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Takku.Models
+namespace TuqTuq.Models
 {
-    public class TakkuContext : DbContext
+    public class TuqTuqContext : DbContext
     {
-        public TakkuContext (DbContextOptions<TakkuContext> options) : base(options) 
+        public TuqTuqContext (DbContextOptions<TuqTuqContext> options) : base(options) 
         { 
         }
         public DbSet<Category> Categories { get; set; }

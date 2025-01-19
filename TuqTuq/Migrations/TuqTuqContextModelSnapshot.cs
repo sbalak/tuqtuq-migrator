@@ -3,20 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Takku.Models;
+using TuqTuq.Models;
 
 #nullable disable
 
-namespace Takku.Migrations
+namespace TuqTuq.Migrations
 {
-    [DbContext(typeof(TakkuContext))]
-    [Migration("20241224130941_OrderUpdates")]
-    partial class OrderUpdates
+    [DbContext(typeof(TuqTuqContext))]
+    partial class TuqTuqContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,7 +22,7 @@ namespace Takku.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Takku.Models.Cart", b =>
+            modelBuilder.Entity("TuqTuq.Models.Cart", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -51,7 +48,7 @@ namespace Takku.Migrations
                     b.ToTable("Carts");
                 });
 
-            modelBuilder.Entity("Takku.Models.CartItem", b =>
+            modelBuilder.Entity("TuqTuq.Models.CartItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -77,7 +74,7 @@ namespace Takku.Migrations
                     b.ToTable("CartItems");
                 });
 
-            modelBuilder.Entity("Takku.Models.Category", b =>
+            modelBuilder.Entity("TuqTuq.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -102,7 +99,7 @@ namespace Takku.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Takku.Models.Contract", b =>
+            modelBuilder.Entity("TuqTuq.Models.Contract", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -125,7 +122,7 @@ namespace Takku.Migrations
                     b.ToTable("Contracts");
                 });
 
-            modelBuilder.Entity("Takku.Models.FoodItem", b =>
+            modelBuilder.Entity("TuqTuq.Models.FoodItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -182,7 +179,7 @@ namespace Takku.Migrations
                     b.ToTable("FoodItems");
                 });
 
-            modelBuilder.Entity("Takku.Models.Order", b =>
+            modelBuilder.Entity("TuqTuq.Models.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -225,10 +222,6 @@ namespace Takku.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("UniqueId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -241,7 +234,7 @@ namespace Takku.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("Takku.Models.OrderItem", b =>
+            modelBuilder.Entity("TuqTuq.Models.OrderItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -275,7 +268,7 @@ namespace Takku.Migrations
                     b.ToTable("OrderItems");
                 });
 
-            modelBuilder.Entity("Takku.Models.Rating", b =>
+            modelBuilder.Entity("TuqTuq.Models.Rating", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -303,7 +296,7 @@ namespace Takku.Migrations
                     b.ToTable("Ratings");
                 });
 
-            modelBuilder.Entity("Takku.Models.Restaurant", b =>
+            modelBuilder.Entity("TuqTuq.Models.Restaurant", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -368,6 +361,9 @@ namespace Takku.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PreparationTime")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("PrimaryTaxRate")
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
@@ -381,7 +377,7 @@ namespace Takku.Migrations
                     b.ToTable("Restaurants");
                 });
 
-            modelBuilder.Entity("Takku.Models.Staff", b =>
+            modelBuilder.Entity("TuqTuq.Models.Staff", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -428,7 +424,7 @@ namespace Takku.Migrations
                     b.ToTable("Staffs");
                 });
 
-            modelBuilder.Entity("Takku.Models.User", b =>
+            modelBuilder.Entity("TuqTuq.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -475,15 +471,15 @@ namespace Takku.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Takku.Models.Cart", b =>
+            modelBuilder.Entity("TuqTuq.Models.Cart", b =>
                 {
-                    b.HasOne("Takku.Models.Restaurant", "Restaurant")
+                    b.HasOne("TuqTuq.Models.Restaurant", "Restaurant")
                         .WithMany()
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Takku.Models.User", "User")
+                    b.HasOne("TuqTuq.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -494,15 +490,15 @@ namespace Takku.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Takku.Models.CartItem", b =>
+            modelBuilder.Entity("TuqTuq.Models.CartItem", b =>
                 {
-                    b.HasOne("Takku.Models.Cart", "Cart")
+                    b.HasOne("TuqTuq.Models.Cart", "Cart")
                         .WithMany()
                         .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Takku.Models.FoodItem", "FoodItem")
+                    b.HasOne("TuqTuq.Models.FoodItem", "FoodItem")
                         .WithMany()
                         .HasForeignKey("FoodItemId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -513,9 +509,9 @@ namespace Takku.Migrations
                     b.Navigation("FoodItem");
                 });
 
-            modelBuilder.Entity("Takku.Models.Category", b =>
+            modelBuilder.Entity("TuqTuq.Models.Category", b =>
                 {
-                    b.HasOne("Takku.Models.Restaurant", "Restaurant")
+                    b.HasOne("TuqTuq.Models.Restaurant", "Restaurant")
                         .WithMany()
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -524,15 +520,15 @@ namespace Takku.Migrations
                     b.Navigation("Restaurant");
                 });
 
-            modelBuilder.Entity("Takku.Models.Contract", b =>
+            modelBuilder.Entity("TuqTuq.Models.Contract", b =>
                 {
-                    b.HasOne("Takku.Models.Restaurant", "Restaurant")
+                    b.HasOne("TuqTuq.Models.Restaurant", "Restaurant")
                         .WithMany()
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Takku.Models.Staff", "Staff")
+                    b.HasOne("TuqTuq.Models.Staff", "Staff")
                         .WithMany()
                         .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -543,15 +539,15 @@ namespace Takku.Migrations
                     b.Navigation("Staff");
                 });
 
-            modelBuilder.Entity("Takku.Models.FoodItem", b =>
+            modelBuilder.Entity("TuqTuq.Models.FoodItem", b =>
                 {
-                    b.HasOne("Takku.Models.Category", "Category")
+                    b.HasOne("TuqTuq.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Takku.Models.Restaurant", "Restaurant")
+                    b.HasOne("TuqTuq.Models.Restaurant", "Restaurant")
                         .WithMany()
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -562,15 +558,15 @@ namespace Takku.Migrations
                     b.Navigation("Restaurant");
                 });
 
-            modelBuilder.Entity("Takku.Models.Order", b =>
+            modelBuilder.Entity("TuqTuq.Models.Order", b =>
                 {
-                    b.HasOne("Takku.Models.Restaurant", "Restaurant")
+                    b.HasOne("TuqTuq.Models.Restaurant", "Restaurant")
                         .WithMany()
                         .HasForeignKey("RestaurantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Takku.Models.User", "User")
+                    b.HasOne("TuqTuq.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -581,15 +577,15 @@ namespace Takku.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Takku.Models.OrderItem", b =>
+            modelBuilder.Entity("TuqTuq.Models.OrderItem", b =>
                 {
-                    b.HasOne("Takku.Models.FoodItem", "FoodItem")
+                    b.HasOne("TuqTuq.Models.FoodItem", "FoodItem")
                         .WithMany()
                         .HasForeignKey("FoodItemId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Takku.Models.Order", "Order")
+                    b.HasOne("TuqTuq.Models.Order", "Order")
                         .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -600,9 +596,9 @@ namespace Takku.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("Takku.Models.Rating", b =>
+            modelBuilder.Entity("TuqTuq.Models.Rating", b =>
                 {
-                    b.HasOne("Takku.Models.Order", "Order")
+                    b.HasOne("TuqTuq.Models.Order", "Order")
                         .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
