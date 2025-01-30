@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TuqTuq.Models;
 
@@ -11,9 +12,11 @@ using TuqTuq.Models;
 namespace TuqTuq.Migrations
 {
     [DbContext(typeof(TuqTuqContext))]
-    partial class TuqTuqContextModelSnapshot : ModelSnapshot
+    [Migration("20250119134932_OfferUpdates")]
+    partial class OfferUpdates
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -197,9 +200,6 @@ namespace TuqTuq.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RestaurantId")
-                        .HasColumnType("int");
 
                     b.Property<int?>("Threshold")
                         .HasColumnType("int");
