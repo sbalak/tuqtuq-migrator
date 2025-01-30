@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TuqTuq.Models;
 
@@ -11,9 +12,11 @@ using TuqTuq.Models;
 namespace TuqTuq.Migrations
 {
     [DbContext(typeof(TuqTuqContext))]
-    partial class TuqTuqContextModelSnapshot : ModelSnapshot
+    [Migration("20250130142236_UpdateCartWithOffer")]
+    partial class UpdateCartWithOffer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
